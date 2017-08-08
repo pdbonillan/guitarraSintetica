@@ -21,7 +21,7 @@ fRe = 294; % Frecuencia nota musical Re en Hertz
 NT_Re = fs/fRe;
 NT_Re = floor(NT_Re); % convierte flotante a entero
 x = 2*rand(NT_Re,1)-1; % genera numero aleatorio con nivel DC cero
-D = 1;
+
 NM = D*fs;
 Re = zeros(NM,1); %rellena de ceros la columna
 for n=0 : NM-1;
@@ -36,7 +36,7 @@ fMi = 330; % Frecuencia nota musical Mi en Hertz
 NT_Mi = fs/fMi;
 NT_Mi = floor(NT_Mi); % convierte flotante a entero
 x = 2*rand(NT_Mi,1)-1; % genera numero aleatorio con nivel DC cero
-D = 1;
+
 NM = D*fs;
 Mi = zeros(NM,1); %Rellena de ceros la columna
 for n=0 : NM-1;
@@ -51,7 +51,7 @@ fFa = 349; % Frecuencia nota musical Fa en Hertz
 NT_Fa = fs/fFa;
 NT_Fa = floor(NT_Fa); % convierte flotante a entero
 x = 2*rand(NT_Fa,1)-1; % genera numero aleatorio con nivel DC cero
-D = 1;
+
 NM = D*fs;
 Fa = zeros(NM,1); %Rellena de ceros la columna
 for n=0 : NM-1;
@@ -66,7 +66,7 @@ fSol = 392; % Frecuencia nota musical Sol en Hertz
 NT_Sol = fs/fSol;
 NT_Sol = floor(NT_Sol); % convierte flotante a entero
 x = 2*rand(NT_Sol,1)-1; % genera numero aleatorio con nivel DC cero
-D = 1;
+
 NM = D*fs;
 Sol = zeros(NM,1); %Rellena de ceros la columna
 for n=0 : NM-1;
@@ -81,7 +81,7 @@ fLa = 440; % Frecuencia nota musical La en Hertz
 NT_La = fs/fLa;
 NT_La = floor(NT_La); % convierte flotante a entero
 x = 2*rand(NT_La,1)-1; % genera numero aleatorio con nivel DC cero
-D = 1;
+
 NM = D*fs;
 La = zeros(NM,1); %Rellena de ceros la columna
 for n=0 : NM-1;
@@ -96,7 +96,7 @@ fSi = 494; % Frecuencia nota musical Si en Hertz
 NT_Si = fs/fSi;
 NT_Si = floor(NT_Si); % convierte flotante a entero
 x = 2*rand(NT_Si,1)-1; % genera numero aleatorio con nivel DC cero
-D = 1;
+
 NM = D*fs;
 Si = zeros(NM,1); %Rellena de ceros la columna
 for n=0 : NM-1;
@@ -106,3 +106,19 @@ for n=0 : NM-1;
         Si(n+1) = (Si(n-NT_Si+6) + Si(n-NT_Si+5) + Si(n-NT_Si+4) + Si(n-NT_Si+3) + Si(n-NT_Si+2))/5;
     end
 end
+
+%Para hacer una secuencia de notas
+sound(Do,fs)
+sound(Re,fs)
+sound(Mi,fs)
+sound(Fa,fs)
+sound(Sol,fs)
+sound(La,fs)
+sound(Si,fs)
+
+% Para mezclar dos o mas salidas de notas
+% musicales en sus primeros armonicos
+sound([Do,Re],fs)
+sound([Mi,Si],fs)
+sound(La)
+sound(La)
