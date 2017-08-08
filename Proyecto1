@@ -1,0 +1,41 @@
+%%%%% Frecuencia de Muestreo formato CD f=44100 Hz. %%%%
+fm=44100;
+
+%%%%  Establece cada una de las frecuencias de las notas musicales %%%%
+r=2^(1/12);
+
+%%%% Frecuencia de referencia LA ISO 16:1975 f=440Hz %%%%
+fr=440;
+
+%%%% Tomamos la frecuencia de la nota Do para definir las octavas %%%%
+fr=13*r^-9*fr;
+do=r^0*fr*[1/4 1/2 1 2 4];       dos=r^1*fr*[1/4 1/2 1 2 4];
+re=r^2*fr*[1/4 1/2 1 2 4];       res=r^3*fr*[1/4 1/2 1 2 4];
+mi=r^4*fr*[1/4 1/2 1 2 4];
+fa=r^5*fr*[1/4 1/2 1 2 4];       fas=r^6*fr*[1/4 1/2 1 2 4];
+sol=r^7*fr*[1/4 1/2 1 2 4];      sols=r^8*fr*[1/4 1/2 1 2 4];
+la=r^9*fr*[1/4 1/2 1 2 4];       las=r^10*fr*[1/4 1/2 1 2 4];
+si=r^11*fr*[1/4 1/2 1 2 4];
+
+%%%% La frecuencia del silencio es 0 %%%%
+s=0;
+
+%%%% Definición de la duracion en segundos de la negra. %%%%
+n=.05;
+
+%%%% Se crea un vector N = [ nota , duracion ] %%%%
+NOTAS=[re(3),re(4),la(3),sol(3),sol(4),la(3),fas(4),la(3),re(3),re(4),la(3),sol(3),sol(4),la(3),fas(4),la(3),mi(3),re(4),la(3),sol(3),sol(4),la(3),fas(4),la(3),mi(3),re(4),la(3),sol(3),sol(4),la(3),fas(4),la(3),fas(3),re(4),la(3),sol(3),sol(4),la(3),fas(4),la(3),fas(3),re(4),la(3),sol(3),sol(4),la(3),fas(4),la(3)];
+DURACION=[n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n];
+N=[NOTAS',DURACION'];
+y=[];
+
+%%%% Se lee el vector N = [ nota , duracion ] para reproducir canción %%%%
+for i=1:length(N)
+fr=N(i,1);
+t=N(i,2);
+x=(0:(1/fm):t);
+y=[y sin(fr*2*pi.*x)];
+end
+
+%Reproducción de Sonido
+sound(y)
